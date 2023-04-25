@@ -5,8 +5,10 @@
   "scripts": {
     "dev": "export NEXTAUTH_SECRET=somesecret && next dev",
     "build": "next build",
+    "dev:start": "export NEXTAUTH_SECRET=somesecret && next build && next start",
     "start": "export NEXTAUTH_SECRET=somesecret && next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "jest --watch"
   },
   "dependencies": {
     "@emotion/react": "~11.10.6",
@@ -20,14 +22,23 @@
     "@types/react-dom": "18.0.11",
     "bcryptjs": "~2.4.3",
     "config": "~3.3.9",
+    "cookies": "~0.8.0",
     "eslint": "8.39.0",
     "eslint-config-next": "13.3.1",
     "next": "13.3.1",
     "next-auth": "~4.22.1",
+    "next-connect": "~0.13.0",
+    "node-cache": "~5.1.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "sequelize": "~6.31.0",
     "sqlite3": "~5.1.6",
     "typescript": "5.0.4"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "~5.16.5",
+    "@testing-library/react": "~14.0.0",
+    "jest": "~29.5.0",
+    "jest-environment-jsdom": "~29.5.0"
   }
 }
