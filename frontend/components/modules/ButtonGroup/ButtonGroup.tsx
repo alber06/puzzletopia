@@ -9,13 +9,13 @@ const ButtonGroup = ({ puzzles }: { puzzles: Array<PuzzleOption> }) => {
   }
   
   return(
-    <div className={styles.Container}>
+    <>
       { puzzles.map(
         (puzzle, index) => {
           return <Button className={styles.Button} variant="outlined" key={`${index}${puzzle.key}`} onClick={() => handleClick(puzzle.key)}>Take {puzzle.title}</Button>
         }
-      )}  
-    </div>
+      )}
+    </>
   )
 }
 
