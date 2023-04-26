@@ -5,6 +5,6 @@ describe('getNthBiggestNumber', () => {
     const puzzleNumbers = Array.from({ length: 500 }, (value, index) => index)
     const result = getNthBiggestNumber(puzzleNumbers, 300)
 
-    expect(result).toBe(199)
+    expect(result).toBe(200)
   })
 })
