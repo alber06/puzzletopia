@@ -30,7 +30,7 @@ const Puzzle1 = () => {
     })
     const data = await res.json()
 
-    setStatus(data?.solved ? 'SOLVED': 'FAILED')
+    setStatus(data?.ok ? 'SOLVED': 'FAILED')
   }
 
   const tryAgain = async() => {

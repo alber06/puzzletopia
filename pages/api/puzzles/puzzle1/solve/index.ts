@@ -16,7 +16,7 @@ const handler = nc({ onError })
  * Solve puzzle1 based on the numbers provided
  *
  */
-export const handleGeneratePuzzle1 = async (req: NextApiRequest, res: NextApiResponse) => {
+export const handleSolvePuzzle1 = async (req: NextApiRequest, res: NextApiResponse) => {
   const session = await getServerSession(req, res, authOptions(req, res))
 
   if(!session) {
@@ -33,9 +33,9 @@ export const handleGeneratePuzzle1 = async (req: NextApiRequest, res: NextApiRes
     await User.update(session?.user?.id, { puzzle1Complete: true })
   }
   
-  return res.status(200).json({ solved: areEqual })
+  return res.status(200).json({ ok: areEqual })
 }
 
-handler.post(handleGeneratePuzzle1)
+handler.post(handleSolvePuzzle1)
 
 export default handler

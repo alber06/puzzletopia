@@ -1,6 +1,6 @@
 import nc from 'next-connect'
 import { getServerSession } from 'next-auth/next'
-import NextAuth, { authOptions } from '../../auth/[...nextauth]'
+import { authOptions } from '../../auth/[...nextauth]'
 import onError from 'middlewares/errors'
 
 import type { NextApiRequest, NextApiResponse } from 'next'
