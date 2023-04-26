@@ -5,6 +5,7 @@ import { Box, Button, TextField, Typography } from '@mui/material'
 import SuccessText from 'frontend/components/elements'
 
 import styles from './puzzle2.module.css'
+import { getPuzzleData, solvePuzzle } from 'frontend/api/PuzzlesAPI'
 
 const Puzzle2 = () => {
   const { data: session, status: sessionStatus, update } = useSession() as { data: UserSession, status: string, update: Function }
@@ -14,23 +15,17 @@ const Puzzle2 = () => {
   const [ alreadySolved, setAlreadySolved ] = useState<boolean>(false)
 
   const fetchData = async () => {
-    const res = await fetch('/api/puzzles/puzzle2')
-    const data = await res.json()
+    const { data } = await getPuzzleData('puzzle2')
 
     setNumbersString(data?.numbers)
   }
 
   const solve = async () => {
-    const res = await fetch('/api/puzzles/puzzle2/solve', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ number: value})
-    })
-    const data = await res.json()
-
-    setStatus(data?.ok ? 'SOLVED': 'FAILED')
+    if (value) {
+      const { data } = await solvePuzzle('puzzle2', { number: value })
+  
+      setStatus(data?.ok ? 'SOLVED': 'FAILED')
+    }
   }
 
   const tryAgain = async() => {
@@ -52,9 +47,10 @@ const Puzzle2 = () => {
     } else {
       fetchData()
     }
-
+    
     return () => update()
-  }, [ session, sessionStatus, update ])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [ sessionStatus ])
 
   const puzzleIncomplete = () => {
     return (

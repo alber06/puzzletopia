@@ -3,8 +3,8 @@ import { useSession } from 'next-auth/react'
 import Router from 'next/router';
 import { useEffect, useState } from 'react'
 
-import styles from './puzzle1.module.css'
 import SuccessText from 'frontend/components/elements/SuccessText';
+import { getPuzzleData, solvePuzzle } from 'frontend/api/PuzzlesAPI';
 
 const Puzzle1 = () => {
   const { data: session, status: sessionStatus, update } = useSession() as { data: UserSession, status: string, update: Function }
@@ -15,23 +15,17 @@ const Puzzle1 = () => {
   const [ alreadySolved, setAlreadySolved ] = useState<boolean>(false)
 
   const fetchData = async () => {
-    const res = await fetch('/api/puzzles/puzzle1')
-    const data = await res.json()
+    const { data } = await getPuzzleData('puzzle1')
 
     setNumbers(data?.numbers)
   }
 
   const solve = async () => {
-    const res = await fetch('/api/puzzles/puzzle1/solve', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ numbers: [ value1, value2 ]})
-    })
-    const data = await res.json()
-
-    setStatus(data?.ok ? 'SOLVED': 'FAILED')
+    if (value1 && value2) {
+      const { data } = await solvePuzzle('puzzle1', { numbers: [ value1, value2 ] })
+  
+      setStatus(data?.ok ? 'SOLVED': 'FAILED')
+    }
   }
 
   const tryAgain = async() => {
