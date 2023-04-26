@@ -19,3 +19,8 @@ interface User {
 interface UserSession {
   user: User
 }
+
+interface APIResponse {
+  data: any,
+  requestOk: boolean
+}
