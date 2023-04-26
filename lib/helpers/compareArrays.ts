@@ -1,8 +1,8 @@
 /**
  * Compare the number of elements and the elements of two arrays
  * 
- * @param {Array<number>} a Number array to compare
- * @param {Array<number>} b Number array to compare
+ * @param {number[]} a Number array to compare
+ * @param {number[]} b Number array to compare
  * @returns {boolean}
  */
 const compareArrays = (a: number[], b: number[]) => {

@@ -3,10 +3,10 @@
  * 
  * @param {number} limit Upper limit for generated numbers  
  * @param {number} occurrences Number of numbers to generate
- * @returns {Array<number>}
+ * @returns {number[]}
  */
 const generateRandomNumbers = (limit: number, occurrences: number) => {
-  const randomNumbers: Array<number> = []
+  const randomNumbers: number[] = []
 
   for (let i = 0; i < occurrences; i++) {
     randomNumbers.push(Math.floor(Math.random() * limit))

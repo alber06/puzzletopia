@@ -3,7 +3,7 @@ import { Button } from "@mui/material"
 import styles from './ButtonGroup.module.css'
 import Router from "next/router"
 
-const ButtonGroup = ({ puzzles }: { puzzles: Array<PuzzleOption> }) => {
+const ButtonGroup = ({ puzzles }: { puzzles: PuzzleOption[] }) => {
   const handleClick = (key: string) => {
     Router.push(`/puzzles/${key}`)
   }

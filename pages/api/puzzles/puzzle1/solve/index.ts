@@ -6,7 +6,6 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import cache from 'lib/cache'
 import compareArrays from 'lib/helpers/compareArrays'
 
-import db from 'lib/db'
 import User from 'lib/db/models/User'
 
 

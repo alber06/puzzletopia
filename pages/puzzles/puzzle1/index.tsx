@@ -7,7 +7,7 @@ import styles from './puzzle1.module.css'
 
 const Puzzle1 = () => {
   const { data: session, status: sessionStatus, update } = useSession() as { data: UserSession, status: string, update: Function }
-  const [ numbers, setNumbers ] = useState<Array<number>>([])
+  const [ numbers, setNumbers ] = useState<number[]>([])
   const [ value1, setValue1 ] = useState<number | ''>('')
   const [ value2, setValue2 ] = useState<number | ''>('')
   const [ status, setStatus ] = useState<string>('')
