@@ -4,6 +4,7 @@ import Router from 'next/router';
 import { useEffect, useState } from 'react'
 
 import styles from './puzzle1.module.css'
+import SuccessText from 'frontend/components/elements/SuccessText';
 
 const Puzzle1 = () => {
   const { data: session, status: sessionStatus, update } = useSession() as { data: UserSession, status: string, update: Function }
@@ -61,11 +62,11 @@ const Puzzle1 = () => {
     return (
       <>
         <Typography variant='subtitle1'>Enter both numbers, no matter the order</Typography>
-        <div className={styles.NumbersContainer}>
+        <div className='pt-numbers-container'>
           { numbers.map((number, index) => (<Typography variant='h5' key={`${index}${number}`}>{number}</Typography>)) }
         </div>
-        <TextField className={styles.TextField} value={value1} disabled={status !== ''} type='number' label='First Value' variant='outlined' onChange={(e) => setValue1(parseInt(e.target.value))}/>
-        <TextField className={styles.TextField} value={value2} disabled={status !== ''} type='number' label='Second Value' variant='outlined' onChange={(e) => setValue2(parseInt(e.target.value))}/>
+        <TextField className='pt-number-input' value={value1} disabled={status !== ''} type='number' label='First Value' variant='outlined' onChange={(e) => setValue1(parseInt(e.target.value))}/>
+        <TextField className='pt-number-input' value={value2} disabled={status !== ''} type='number' label='Second Value' variant='outlined' onChange={(e) => setValue2(parseInt(e.target.value))}/>
         
         { !status && <Button variant='outlined' onClick={solve} disabled={!value1 || !value2}>Solve</Button> }
         { status === 'SOLVED' && <Typography color='green'>Congrats! Correct Answer!</Typography>}
@@ -80,14 +81,10 @@ const Puzzle1 = () => {
     )
   }
 
-  const puzzleAlreadySolved = () => {
-    return <Typography color='green'>You have already solved this puzzle!</Typography>
-  }
-
   return (
     <Box className='pt-container'>
       <Typography variant='h3'>Puzzle 1</Typography>
-      { alreadySolved ? puzzleAlreadySolved() : puzzleIncomplete() }
+      { alreadySolved ? <SuccessText text='You have already solved this puzzle!'></SuccessText> : puzzleIncomplete() }
     </Box>
   )
 }
