@@ -4,7 +4,8 @@ import { authOptions } from '../../../auth/[...nextauth]'
 import onError from 'middlewares/errors'
 import type { NextApiRequest, NextApiResponse } from 'next'
 import cache from 'lib/cache'
-import compareArrays from 'lib/helpers/compareArrays'
+import { compareArrays } from 'lib/helpers'
+import { BadRequestError } from 'errors'
 
 import User from 'lib/db/models/User'
 
@@ -22,9 +23,13 @@ export const handleSolvePuzzle1 = async (req: NextApiRequest, res: NextApiRespon
     return res.status(401).json({ message: 'Unauthorized' })
   } 
 
+  const puzzleNumbers = cache.get(`puzzle1${session?.user?.username}`)
+  if (!puzzleNumbers) {
+    throw new BadRequestError('User has not generated puzzle1 numbers')
+  }
+
   const inputNumbers = req.body.numbers
-  const numbers = cache.get(`puzzle1${session?.user?.username}`)
-  const areEqual = compareArrays(inputNumbers, numbers)
+  const areEqual = compareArrays(inputNumbers, puzzleNumbers)
 
   cache.delete(`puzzle1${session?.user?.username}`)
 

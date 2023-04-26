@@ -4,7 +4,7 @@ import { authOptions } from '../../auth/[...nextauth]'
 import onError from 'middlewares/errors'
 
 import type { NextApiRequest, NextApiResponse } from 'next'
-import generateRandomNumbers from 'lib/helpers/generateRandomNumbers'
+import { generateRandomNumbers } from 'lib/helpers'
 import cache from 'lib/cache'
 
 
