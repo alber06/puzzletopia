@@ -69,7 +69,7 @@ export const authOptions = (req: NextApiRequest, res: NextApiResponse) => {
           username: { label: 'Username', type: 'text', placeholder: 'jsmith' },
           password: { label: 'Password', type: 'password' }
         },
-        async authorize(credentials, req) {
+        async authorize(credentials) {
           const { username, password } = credentials as {
             username: string
             password: string
