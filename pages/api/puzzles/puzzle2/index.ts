@@ -24,7 +24,7 @@ export const handleGeneratePuzzle2 = async (req: NextApiRequest, res: NextApiRes
   const numbers = generateRandomNumbers(1000, 500)
   cache.set(`puzzle2${session?.user?.username}`, numbers)
 
-  return res.status(200).json({ numbers })
+  return res.status(200).json({ numbers: numbers.join(' ') })
 }
 
 handler.get(handleGeneratePuzzle2)
