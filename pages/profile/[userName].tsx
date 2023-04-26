@@ -4,6 +4,7 @@ import Router, { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 
 import styles from './profile.module.css'
+import { getProfile } from 'frontend/api/ProfilesAPI'
 
 const Profile = () => {
   const { status: sessionStatus } = useSession() as { status: string }
@@ -22,10 +23,9 @@ const Profile = () => {
     const fetchData = async () => {
       setLoading(true)
       const plainUserName = userName.slice(1)
-      const res = await fetch(`/api/profiles/${plainUserName}`)
-      const userData = await res.json()
+      const { data: userData, requestOk } = await getProfile(plainUserName)
 
-      if (res.ok) {
+      if (requestOk) {
         setUser(userData)
       }
       setLoading(false)
